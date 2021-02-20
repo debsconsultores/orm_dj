@@ -6,6 +6,9 @@ class Categoria(models.Model):
         max_length=50,
         unique=True
     )
+    fecha_crea = models.DateTimeField(auto_now_add=True)
+    fecha_modifica = models.DateTimeField(auto_now=True)
+    activo = models.BooleanField(default=True)
 
     def __str__(self):
         return self.descripcion
