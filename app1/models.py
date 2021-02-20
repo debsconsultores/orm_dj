@@ -76,3 +76,37 @@ class Animal(ModeloAuditoria):
         verbose_name_plural= "Animales"
 		
 
+class Libro(ModeloAuditoria):
+    nombre=models.CharField(max_length=50)
+    precio=models.FloatField(
+        default=1,
+        help_text=" en dólares"
+    )
+    peso = models.PositiveIntegerField(
+        help_text=" en libras"
+    )
+
+    VIRTUAL='Virtual'
+    FISICO='Físico'
+    TIPO_OPCIONES = [
+        (VIRTUAL,'Virtual'),
+        (FISICO,'Físico'),
+    ]
+    tipo = models.CharField(
+        max_length=7,
+        choices=TIPO_OPCIONES,
+        default=FISICO,	
+    )
+
+    url_download = models.URLField(default=None)
+
+    def __str__(self):
+        return "{}[{}]".format(self.nombre,self.tipo)
+
+    def save(self):
+        self.nombre = self.nombre.upper()
+        super(Libro,self).save()
+    
+    class Meta:
+        verbose_name_plural = "Libros"
+        unique_together = ('nombre','tipo')
