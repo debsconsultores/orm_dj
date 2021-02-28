@@ -155,3 +155,20 @@ class Hijo(models.Model):
 
     def __str__(self):
         return "{} hijo de {}".format(self.nombre,self.padre)
+
+
+class Publicacion(models.Model):
+    titulo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.titulo
+
+
+class Articulo(models.Model):
+    titular = models.CharField(max_length=100)
+    publicaciones = models.ManyToManyField(Publicacion)
+
+    def __str__(self):
+        return self.titular
+
+        
