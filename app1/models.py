@@ -125,3 +125,18 @@ class Libro(ModeloAuditoria):
     class Meta:
         verbose_name_plural = "Libros"
         unique_together = ('nombre','tipo')
+
+
+
+class Progenitor(ModeloAuditoria):
+    persona =models.OneToOneField(Persona,on_delete=models.CASCADE)
+    padre = models.CharField(max_length=50)
+    madre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{} - {} - {}".format(self.persona,self.madre,self.padre)
+
+    class Meta:
+        verbose_name_plural = "Progenitores"
+
+        
