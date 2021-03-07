@@ -207,3 +207,10 @@ class ViewPadreHijo(models.Model):
     class Meta:
         managed = False
         db_table = "view_padrehijo"
+
+
+class NuevoNombre(models.Model):
+    nombre = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = "nuevo_nombre"
