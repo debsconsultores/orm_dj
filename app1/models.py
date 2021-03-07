@@ -191,3 +191,19 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+# select ap.id as idpadre,ap.nombre as nombrepadre,ah.id as idhijo,ah.nombre as nombrehijo from app1_padre ap inner join app1_hijo ah on ap.id = ah.padre_id
+
+class ViewPadreHijo(models.Model):
+    idpadre = models.IntegerField(primary_key=True)
+    nombrepadre = models.CharField(max_length=50)
+    idhijo = models.IntegerField()
+    nombrehijo = models.CharField(max_length=50)
+
+    def __str__(self):
+        return "{} -> {}".format(self.nombrepadre,self.nombrehijo)
+
+    class Meta:
+        managed = False
+        db_table = "view_padrehijo"
