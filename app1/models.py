@@ -211,6 +211,11 @@ class ViewPadreHijo(models.Model):
 
 class NuevoNombre(models.Model):
     nombre = models.CharField(max_length=50)
+    a = models.CharField(
+        max_length=50,
+        db_column="otro_nombre",
+        default=""
+        )
 
     class Meta:
         db_table = "nuevo_nombre"
